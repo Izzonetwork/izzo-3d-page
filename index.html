@@ -3,41 +3,116 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IZZO Network — 3D</title>
+  <title>IZZO Network — Smarter Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --blue: #1a6dff;
+      --blue-2: #4ea2ff;
+      --ink: #eaf2ff;
+      --muted: #8aa3c9;
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; height: 100%; overflow: hidden; background: #05080f; font-family: Inter, system-ui, sans-serif; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #04070e; font-family: Inter, system-ui, sans-serif; color: var(--ink); }
     #c { display: block; width: 100%; height: 100%; }
-    .hud {
-      position: fixed; inset: 0; pointer-events: none;
-      display: flex; flex-direction: column; justify-content: space-between;
-      padding: 28px 32px; color: #e8f0ff;
+    .hud { position: fixed; inset: 0; pointer-events: none; padding: 22px 24px; display: grid; grid-template-rows: auto 1fr auto; }
+    .top, .bottom { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+    .brand { pointer-events: auto; }
+    .logo {
+      font-weight: 800; letter-spacing: 0.14em; font-size: 13px;
+      color: #fff; display: inline-flex; align-items: center; gap: 10px;
     }
-    .hud h1 {
-      font-size: clamp(22px, 4vw, 42px); font-weight: 700; letter-spacing: -0.03em;
-      text-shadow: 0 0 24px rgba(56, 140, 255, 0.45);
+    .mark {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: linear-gradient(135deg, #3d8bff, #0d3ea8);
+      box-shadow: 0 0 18px rgba(26,109,255,.55);
     }
-    .hud p { margin-top: 8px; color: #8aa0c8; font-size: 14px; max-width: 420px; }
+    .tag { margin-top: 8px; color: var(--muted); font-size: 13px; max-width: 280px; }
+    .glass {
+      pointer-events: auto;
+      background: rgba(8,14,28,.55);
+      border: 1px solid rgba(130,180,255,.18);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 18px;
+      padding: 22px 24px;
+      max-width: 420px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+    .glass h1 {
+      font-size: clamp(26px, 4.2vw, 44px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+    }
+    .glass h1 span { color: var(--blue-2); }
+    .glass p { margin-top: 10px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .chip {
+      font-size: 11px; font-weight: 600; letter-spacing: .02em;
+      padding: 6px 10px; border-radius: 999px;
+      border: 1px solid rgba(120,170,255,.25);
+      color: #cfe0ff; background: rgba(26,109,255,.12);
+    }
+    .cta-row { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
     .cta {
-      pointer-events: auto; align-self: flex-start;
-      background: #1a6dff; color: #fff; border: 0; border-radius: 999px;
-      padding: 12px 22px; font-weight: 600; cursor: pointer; text-decoration: none;
+      background: linear-gradient(180deg, #3b8bff, #1658e6);
+      color: #fff; text-decoration: none; font-weight: 700; font-size: 14px;
+      padding: 12px 18px; border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(26,109,255,.4);
     }
-    .hint { color: #6b7fa3; font-size: 12px; }
+    .cta.ghost {
+      background: transparent; border: 1px solid rgba(150,190,255,.3); color: #d7e6ff;
+      box-shadow: none;
+    }
+    .stats {
+      display: flex; gap: 18px; color: var(--muted); font-size: 12px; margin-top: 16px;
+    }
+    .stats b { display: block; color: #fff; font-size: 16px; }
+    .hint { color: #6b84a8; font-size: 12px; align-self: flex-end; }
+    @media (max-width: 720px) {
+      .glass { max-width: 100%; }
+      .hint { display: none; }
+    }
   </style>
 </head>
 <body>
   <canvas id="c"></canvas>
   <div class="hud">
-    <div>
-      <h1>Smarter Tech for Home and Business</h1>
-      <p>Drag to orbit. Scroll to zoom. A live 3D scene for IZZO Network.</p>
+    <div class="top">
+      <div class="brand">
+        <div class="logo"><span class="mark"></span> IZZO NETWORK</div>
+        <div class="tag">South Jersey IT, networks &amp; smart home.</div>
+      </div>
+      <div class="hint">Drag to orbit · Scroll to zoom</div>
     </div>
-    <div>
-      <a class="cta" href="https://www.izzonetwork.com/" target="_blank" rel="noopener">Get a free estimate</a>
-      <p class="hint" style="margin-top:10px">(609) 415-0011</p>
+    <div></div>
+    <div class="bottom">
+      <div class="glass">
+        <h1>Smarter tech<br>for <span>home</span> &amp; business</h1>
+        <p>Managed IT, Wi-Fi, cabling, cameras, and whole-home automation — designed, installed, and supported locally.</p>
+        <div class="chips">
+          <span class="chip">Managed IT</span>
+          <span class="chip">Enterprise Wi-Fi</span>
+          <span class="chip">Cybersecurity</span>
+          <span class="chip">Smart Home</span>
+          <span class="chip">Cameras</span>
+        </div>
+        <div class="cta-row">
+          <a class="cta" href="tel:6094150011">Call (609) 415-0011</a>
+          <a class="cta ghost" href="https://www.izzonetwork.com/" target="_blank" rel="noopener">Free estimate</a>
+        </div>
+        <div class="stats">
+          <div><b>24/7</b> monitoring</div>
+          <div><b>Local</b> South Jersey</div>
+          <div><b>Home + Biz</b> installs</div>
+        </div>
+      </div>
     </div>
   </div>
+
   <script type="importmap">
     {
       "imports": {
@@ -49,104 +124,164 @@
   <script type="module">
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+    import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 
     const canvas = document.getElementById('c');
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
     renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
     renderer.setSize(innerWidth, innerHeight);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.05;
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x05080f, 0.035);
-    scene.background = new THREE.Color(0x05080f);
+    scene.fog = new THREE.FogExp2(0x04070e, 0.045);
+    scene.background = new THREE.Color(0x04070e);
 
-    const camera = new THREE.PerspectiveCamera(55, innerWidth / innerHeight, 0.1, 100);
-    camera.position.set(4.2, 2.4, 5.4);
+    const camera = new THREE.PerspectiveCamera(50, innerWidth / innerHeight, 0.1, 80);
+    camera.position.set(5.6, 2.8, 6.2);
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.minDistance = 3;
-    controls.maxDistance = 14;
-    controls.target.set(0, 0.2, 0);
+    controls.dampingFactor = 0.06;
+    controls.minDistance = 4;
+    controls.maxDistance = 16;
+    controls.maxPolarAngle = Math.PI * 0.48;
+    controls.target.set(0, 0.4, 0);
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.45;
 
-    scene.add(new THREE.AmbientLight(0x4a6aa8, 0.55));
-    const key = new THREE.DirectionalLight(0x7ab0ff, 1.4);
-    key.position.set(4, 6, 3);
+    scene.add(new THREE.HemisphereLight(0x8eb6ff, 0x0a1020, 0.55));
+    const key = new THREE.DirectionalLight(0xcfe4ff, 1.6);
+    key.position.set(5, 8, 4);
     scene.add(key);
-    const rim = new THREE.PointLight(0x3d7cff, 8, 20);
-    rim.position.set(-3, 1.5, -2);
-    scene.add(rim);
+    const fill = new THREE.PointLight(0x1a6dff, 18, 24);
+    fill.position.set(-4, 2, -2);
+    scene.add(fill);
+    const spark = new THREE.PointLight(0x7ec8ff, 10, 12);
+    spark.position.set(2, 0.4, 3);
+    scene.add(spark);
 
     const core = new THREE.Mesh(
-      new THREE.IcosahedronGeometry(1.15, 1),
-      new THREE.MeshStandardMaterial({
+      new THREE.IcosahedronGeometry(1.05, 2),
+      new THREE.MeshPhysicalMaterial({
         color: 0x1a6dff,
-        metalness: 0.55,
-        roughness: 0.25,
-        emissive: 0x0a2a66,
-        emissiveIntensity: 0.35
+        metalness: 0.7,
+        roughness: 0.18,
+        emissive: 0x0b2f80,
+        emissiveIntensity: 0.7,
+        clearcoat: 1,
+        clearcoatRoughness: 0.15
       })
     );
     scene.add(core);
 
-    const wire = new THREE.Mesh(
-      new THREE.IcosahedronGeometry(1.18, 1),
-      new THREE.MeshBasicMaterial({ color: 0x9ec4ff, wireframe: true, transparent: true, opacity: 0.35 })
+    const inner = new THREE.Mesh(
+      new THREE.IcosahedronGeometry(0.62, 1),
+      new THREE.MeshBasicMaterial({ color: 0xb8d6ff })
+    );
+    scene.add(inner);
+
+    const wire = new THREE.LineSegments(
+      new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(1.12, 1)),
+      new THREE.LineBasicMaterial({ color: 0x9ec8ff, transparent: true, opacity: 0.35 })
     );
     scene.add(wire);
 
-    const ring = new THREE.Mesh(
-      new THREE.TorusGeometry(2.05, 0.035, 16, 96),
-      new THREE.MeshStandardMaterial({ color: 0x5aa2ff, metalness: 0.8, roughness: 0.2, emissive: 0x12366a })
-    );
-    ring.rotation.x = Math.PI / 2.4;
-    scene.add(ring);
+    function makeRing(r, tube, rx, rz) {
+      const m = new THREE.Mesh(
+        new THREE.TorusGeometry(r, tube, 12, 120),
+        new THREE.MeshStandardMaterial({
+          color: 0x4ea2ff, metalness: 0.85, roughness: 0.18, emissive: 0x123a80, emissiveIntensity: 0.6
+        })
+      );
+      m.rotation.x = rx;
+      m.rotation.z = rz;
+      scene.add(m);
+      return m;
+    }
+    const ringA = makeRing(2.15, 0.028, Math.PI / 2.15, 0.15);
+    const ringB = makeRing(1.72, 0.018, Math.PI / 1.65, 0.7);
+    const ringC = makeRing(2.55, 0.012, Math.PI / 2.6, -0.4);
 
-    const ring2 = ring.clone();
-    ring2.rotation.x = Math.PI / 1.7;
-    ring2.rotation.z = 0.6;
-    ring2.scale.setScalar(0.78);
-    scene.add(ring2);
-
+    const nodeCount = 28;
+    const nodePos = [];
     const nodes = new THREE.Group();
-    const nodeGeo = new THREE.SphereGeometry(0.07, 16, 16);
-    const nodeMat = new THREE.MeshStandardMaterial({ color: 0xd8e8ff, emissive: 0x3a7fff, emissiveIntensity: 1.2 });
-    for (let i = 0; i < 18; i++) {
+    const nodeGeo = new THREE.SphereGeometry(0.055, 16, 16);
+    const nodeMat = new THREE.MeshStandardMaterial({
+      color: 0xffffff, emissive: 0x4ea2ff, emissiveIntensity: 2, metalness: 0.4, roughness: 0.2
+    });
+    for (let i = 0; i < nodeCount; i++) {
       const n = new THREE.Mesh(nodeGeo, nodeMat);
-      const a = (i / 18) * Math.PI * 2;
-      n.position.set(Math.cos(a) * 2.05, Math.sin(a * 1.7) * 0.35, Math.sin(a) * 2.05);
+      const phi = Math.acos(1 - 2 * (i + 0.5) / nodeCount);
+      const theta = Math.PI * (1 + Math.sqrt(5)) * i;
+      const r = 2.15 + (i % 3) * 0.22;
+      const p = new THREE.Vector3(
+        r * Math.sin(phi) * Math.cos(theta),
+        r * Math.cos(phi) * 0.55,
+        r * Math.sin(phi) * Math.sin(theta)
+      );
+      n.position.copy(p);
+      nodePos.push(p);
       nodes.add(n);
     }
     scene.add(nodes);
 
-    const stars = new THREE.Points(
-      (() => {
-        const g = new THREE.BufferGeometry();
-        const p = new Float32Array(900);
-        for (let i = 0; i < p.length; i++) p[i] = (Math.random() - 0.5) * 30;
-        g.setAttribute('position', new THREE.BufferAttribute(p, 3));
-        return g;
-      })(),
-      new THREE.PointsMaterial({ color: 0x8eb6ff, size: 0.03 })
+    const linePos = [];
+    for (let i = 0; i < nodeCount; i++) {
+      for (let j = i + 1; j < nodeCount; j++) {
+        if (nodePos[i].distanceTo(nodePos[j]) < 1.55) {
+          linePos.push(nodePos[i].x, nodePos[i].y, nodePos[i].z, nodePos[j].x, nodePos[j].y, nodePos[j].z);
+        }
+      }
+    }
+    const lineGeo = new THREE.BufferGeometry();
+    lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+    const links = new THREE.LineSegments(
+      lineGeo,
+      new THREE.LineBasicMaterial({ color: 0x4ea2ff, transparent: true, opacity: 0.28 })
     );
-    scene.add(stars);
+    scene.add(links);
+
+    const starGeo = new THREE.BufferGeometry();
+    const starArr = new Float32Array(1500);
+    for (let i = 0; i < starArr.length; i++) starArr[i] = (Math.random() - 0.5) * 36;
+    starGeo.setAttribute('position', new THREE.BufferAttribute(starArr, 3));
+    scene.add(new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0x8eb6ff, size: 0.028 })));
+
+    const grid = new THREE.GridHelper(40, 40, 0x1a3a70, 0x0d1a33);
+    grid.position.y = -2.2;
+    scene.add(grid);
+
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.85, 0.7, 0.18);
+    composer.addPass(bloom);
+    composer.addPass(new OutputPass());
 
     addEventListener('resize', () => {
       camera.aspect = innerWidth / innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(innerWidth, innerHeight);
+      composer.setSize(innerWidth, innerHeight);
     });
 
     function tick(t) {
       const s = t * 0.001;
-      core.rotation.y = s * 0.35;
-      core.rotation.x = s * 0.12;
-      wire.rotation.y = -s * 0.28;
-      ring.rotation.z = s * 0.4;
-      ring2.rotation.y = s * 0.25;
-      nodes.rotation.y = s * 0.4;
+      core.rotation.y = s * 0.28;
+      core.rotation.x = Math.sin(s * 0.4) * 0.12;
+      inner.rotation.y = -s * 0.55;
+      wire.rotation.y = -s * 0.22;
+      ringA.rotation.z = s * 0.35;
+      ringB.rotation.y = s * 0.22;
+      ringC.rotation.z = -s * 0.18;
+      nodes.rotation.y = s * 0.12;
+      links.rotation.y = s * 0.12;
+      fill.intensity = 16 + Math.sin(s * 2) * 4;
       controls.update();
-      renderer.render(scene, camera);
+      composer.render();
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
